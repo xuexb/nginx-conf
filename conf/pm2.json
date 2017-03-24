@@ -1,0 +1,23 @@
+{
+    "apps": [{
+        "name": "blog-8899",
+        "script": "www/production.js",
+        "cwd": "/home/wwwroot/github/blognew",
+        "exec_mode": "fork",
+        "max_memory_restart": "150M",
+        "autorestart": true,
+        "node_args": [],
+        "args": [],
+        "env": {}
+    }, {
+        "name": "github-8888",
+        "script": "index.js",
+        "cwd": "/home/wwwroot/github/demo",
+        "exec_mode": "fork",
+        "max_memory_restart": "150M",
+        "autorestart": true,
+        "node_args": [],
+        "args": [],
+        "env": {}
+    }]
+}
