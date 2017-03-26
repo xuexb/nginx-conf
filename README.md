@@ -12,13 +12,10 @@
 # nginx配置
 ./conf/
 
-# getssl脚本配置
-./getssl/
-
-# ssl证书
+# ssl证书 - 忽略提交
 ./ssl/
 
-# 验证文件
+# 验证文件 - 忽略提交
 ./acme-challenge/
 ```
 
@@ -33,8 +30,7 @@
 
 ```
 # 获取证书
-getssl xuexb.com
-
+./bin/certbot-auto certonly --webroot -w /home/local/nginx-conf/acme-challenge -d xuexb.com -d www.xuexb.com -d github.xuexb.com -d ci.xuexb.com -d static.xuexb.com -d proxy.xuexb.com
 # pm2启动node服务
 pm2 start conf/pm2.json
 ```
