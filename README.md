@@ -29,8 +29,20 @@
 ## 命令
 
 ```
-# 获取证书
+# 获取证书, 更新后把证书ln到./ssl中
 ./bin/certbot-auto certonly --webroot -w /home/local/nginx-conf/acme-challenge -d xuexb.com -d www.xuexb.com -d github.xuexb.com -d ci.xuexb.com -d static.xuexb.com -d proxy.xuexb.com
+
+# 生成dhparam
+openssl dhparam -out ./ssl/dhparam.pem 2048
+
+# 生成root_ca_cert_plus_intermediates
+wget https://letsencrypt.org/certs/isrgrootx1.pem
+mv isrgrootx1.pem root.pem
+cat root.pem chain.pem > root_ca_cert_plus_intermediates
+
+# 自动更新
+./bin/certbot-auto renew --dry-run
+
 # pm2启动node服务
 pm2 start conf/pm2.json
 ```
