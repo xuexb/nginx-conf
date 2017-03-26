@@ -41,7 +41,7 @@ mv isrgrootx1.pem root.pem
 cat root.pem chain.pem > root_ca_cert_plus_intermediates
 
 # 自动更新
-./bin/certbot-auto renew --dry-run
+/home/local/nginx-conf/bin/certbot-auto renew && nginx -s reload
 
 # pm2启动node服务
 pm2 start conf/pm2.json
