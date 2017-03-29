@@ -1,6 +1,6 @@
 {
     "apps": [{
-        "name": "blog-8899",
+        "name": "blog-8360",
         "script": "www/production.js",
         "cwd": "/home/wwwroot/github/blognew",
         "exec_mode": "fork",
