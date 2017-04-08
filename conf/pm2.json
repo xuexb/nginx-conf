@@ -19,5 +19,15 @@
         "node_args": [],
         "args": [],
         "env": {}
+    }, {
+        "name": "reload.cdn-8361",
+        "script": "index.js",
+        "cwd": "/home/wwwroot/reload.cdn.xuexb.com/",
+        "exec_mode": "fork",
+        "max_memory_restart": "50M",
+        "autorestart": true,
+        "node_args": [],
+        "args": [],
+        "env": {}
     }]
 }
