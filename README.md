@@ -12,6 +12,9 @@
 # nginx配置
 ./conf/
 
+# 日志切割
+./logrotate/
+
 # ssl证书 - 忽略提交
 ./ssl/
 
