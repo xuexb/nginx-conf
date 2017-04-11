@@ -53,5 +53,5 @@ pm2 start conf/pm2.json
 # 如果没有开启可以使用自主编辑crontab
 crontab -e
 # 插入一条定时任务, 定时23:50开始分割, 后面是把错误和信息输出到指定文件, 方便调试
-50 23 * * * sh /home/wwwlog/nginx/new/run.sh  >> /home/wwwlog/nginx/new/crontab.log 2>&1
+50 23 * * * sh /home/local/nginx-conf/logrotate/run.sh  >> /home/wwwlog/nginx/new/crontab.log 2>&1
 ```
