@@ -2,7 +2,7 @@
     "apps": [{
         "name": "blog-8360",
         "script": "www/production.js",
-        "cwd": "/home/wwwroot/github/blognew",
+        "cwd": "/home/wwwroot/github/blog",
         "exec_mode": "fork",
         "max_memory_restart": "150M",
         "autorestart": true,
