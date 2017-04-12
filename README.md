@@ -22,6 +22,9 @@
 # 站点配置
 ./conf/vhost/
 
+# 公用静态文件
+./html/
+
 # 日志切割
 ./logrotate/
 
