@@ -1,5 +1,9 @@
 # nginx-conf
 
+- 使用 [certbot](https://github.com/certbot/certbot) 生成 [letsencrypt](https://letsencrypt.org/) SSL证书
+- 使用 `crontab` + `logrotate` 定时切割nginx日志
+- 使用 [nginx-echo](https://github.com/openresty/echo-nginx-module) 统一管理`/favicon.ico`、`/robots.txt`的输出
+
 ## 目录结构
 
 ```
@@ -11,6 +15,12 @@
 
 # nginx配置
 ./conf/
+
+# 扩展文件, 包括通用favicon.ico、通用robots.txt、ssl证书验证
+./conf/inc/
+
+# 站点配置
+./conf/vhost/
 
 # 日志切割
 ./logrotate/
@@ -28,6 +38,7 @@
 --- | ---
 8360 | 博客node
 8888 | demo-node
+8361 | reload-cdn
 
 ## 命令
 
