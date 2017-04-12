@@ -4,4 +4,4 @@
 
 PATH=/sbin:/bin:/usr/sbin:/usr/bin
 
-logrotate -f /home/local/nginx-conf/logrotate/nginx
+logrotate -f /home/local/nginx-conf/logrotate/nginx.conf
