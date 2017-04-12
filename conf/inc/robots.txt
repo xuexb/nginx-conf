@@ -1,0 +1,46 @@
+location = /robots.txt {
+    echo_before_body    '# xiaowu
+User-agent: Baiduspider
+Allow: /
+
+User-agent: Sosospider
+Allow: /
+
+User-agent: sogou spider
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: MSNBot
+Allow: /
+
+User-agent: googlebot-mobile
+Allow: /
+
+User-agent: 360Spider
+Allow: /
+
+User-agent: HaosouSpider
+Allow: /
+
+User-agent: *
+Disallow: /
+';
+
+    # 如果文件存在, 则添加头+尾转发过去
+    if ( -f $request_filename ){
+        echo            '# proxy by $host';
+        echo_location_async /__proxy__robots;
+        echo            '# proxy end';
+    }
+
+    echo                '';
+}
+
+location = /__proxy__robots {
+    rewrite (.*) /robots.txt break;
+}
