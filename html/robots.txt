@@ -1,0 +1,30 @@
+# xiaowu
+User-agent: Baiduspider
+Allow: /
+
+User-agent: Sosospider
+Allow: /
+
+User-agent: sogou spider
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: MSNBot
+Allow: /
+
+User-agent: googlebot-mobile
+Allow: /
+
+User-agent: 360Spider
+Allow: /
+
+User-agent: HaosouSpider
+Allow: /
+
+User-agent: *
+Disallow: /
