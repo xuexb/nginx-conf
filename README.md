@@ -3,7 +3,7 @@
 - 使用 [certbot](https://github.com/certbot/certbot) 生成 [letsencrypt](https://letsencrypt.org/) SSL证书
 - 使用 `crontab` + `logrotate` 定时切割nginx日志
 - 统一管理`/favicon.ico`(优先使用站点目录内文件, 如果不存在则使用统一的)
-- 使用 [nginx-echo](https://github.com/openresty/echo-nginx-module) 代理`/robots.txt`的输出, 输出默认搜索引擎过滤, 如果站点目录内存在则追加
+- 统一管理`/robots.txt`(优先使用站点目录内文件, 如果不存在则使用统一的)
 
 ## 目录结构
 
