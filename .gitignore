@@ -39,3 +39,7 @@ jspm_packages
 /acme-challenge
 
 /conf/*.default
+*.csr
+*.key
+*.crt
+*.csr
