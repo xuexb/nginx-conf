@@ -3,6 +3,7 @@
 sourceDir='/var/log/nginx/xuexb.com/source'
 backDir='/var/log/nginx/xuexb.com/back'
 
+echo "start: $(date)"
 echo "开始移动日志: $(date +%Y%m%d)"
 ls $sourceDir | while read filename
 do
@@ -12,3 +13,6 @@ do
 done
 echo "移动日志结束: $(date +%Y%m%d)"
 echo "\n\n"
+
+# 刷新nginx
+kill -USR1 `cat /var/run/nginx.pid`
