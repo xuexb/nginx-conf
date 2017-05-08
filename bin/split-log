@@ -1,0 +1,14 @@
+#!/bin/sh
+
+sourceDir='/var/log/nginx/xuexb/source'
+backDir='/var/log/nginx/xuexb/back'
+
+echo "开始移动日志: $(date +%Y%m%d)"
+ls $sourceDir | while read filename
+do
+    mkdir -p "$backDir/$(date +%Y%m%d)/"
+    mv "$sourceDir/$filename" "$backDir/$(date +%Y%m%d)/"
+    echo "$sourceDir/$filename => $backDir/$(date +%Y%m%d)/$filename"
+done
+echo "移动日志结束: $(date +%Y%m%d)"
+echo "\n\n"
