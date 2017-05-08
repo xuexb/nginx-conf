@@ -1,6 +1,6 @@
 #!/bin/sh
 
-sourceDir='/var/log/nginx/xuexb.com/source'
+sourceDir='/var/log/nginx/xuexb.com/last'
 backDir='/var/log/nginx/xuexb.com/back'
 
 echo "start: $(date)"

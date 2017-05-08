@@ -33,7 +33,7 @@
 ./acme-challenge/
 
 # 日志源文件
-/var/log/nginx/xuexb.com/source/{access,error}.{子域名}.log
+/var/log/nginx/xuexb.com/last/{access,error}.{子域名}.log
 
 # 日志切割文件文件
 /var/log/nginx/xuexb.com/back/{Y-m-d}/{access,error}.{子域名}.log
