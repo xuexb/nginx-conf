@@ -1,7 +1,7 @@
 # nginx-conf
 
 - 使用 [certbot](https://github.com/certbot/certbot) 生成 [letsencrypt](https://letsencrypt.org/) SSL证书
-- 使用 `crontab` + `logrotate` 定时切割nginx日志
+- 使用 `crontab` + `bin/split-log` 定时切割nginx日志
 - 统一管理`/favicon.ico`(优先使用站点目录内文件, 如果不存在则使用统一的)
 - 统一管理`/robots.txt`(优先使用站点目录内文件, 如果不存在则使用统一的)
 
@@ -25,9 +25,6 @@
 
 # 公用静态文件
 ./html/
-
-# 日志切割
-./logrotate/
 
 # ssl证书 - 忽略提交
 ./ssl/
@@ -64,9 +61,7 @@ cat root.pem chain.pem > root_ca_cert_plus_intermediates
 # pm2启动node服务
 pm2 start conf/pm2.json
 
-# 优先考虑使用系统级的定时任务: /etc/cron.daily/logrotate
-# 如果没有开启可以使用自主编辑crontab
 crontab -e
 # 插入一条定时任务, 定时23:50开始分割, 后面是把错误和信息输出到指定文件, 方便调试
-50 23 * * * sh /home/local/nginx-conf/logrotate/run.sh  >> /home/wwwlog/nginx/new/crontab.log 2>&1
+50 23 * * * sh /home/local/nginx-conf/bin/split-log >> /var/log/nginx/crontab.log 2>&1
 ```
