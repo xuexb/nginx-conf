@@ -1,7 +1,7 @@
 #!/bin/sh
 
-sourceDir='/var/log/nginx/xuexb/source'
-backDir='/var/log/nginx/xuexb/back'
+sourceDir='/var/log/nginx/xuexb.com/source'
+backDir='/var/log/nginx/xuexb.com/back'
 
 echo "开始移动日志: $(date +%Y%m%d)"
 ls $sourceDir | while read filename
