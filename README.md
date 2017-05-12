@@ -50,7 +50,7 @@
 
 ```
 # 获取证书, 更新后把证书ln到./ssl中
-./bin/certbot-auto certonly --webroot -w /home/local/nginx-conf/acme-challenge -d xuexb.com -d www.xuexb.com -d github.xuexb.com -d ci.xuexb.com -d static.xuexb.com -d proxy.xuexb.com -d api.xuexb.com -d echo.xuexb.com -d reload.cdn.xuexb.com -d mip.xuexb.com -d admin.xuexb.com -d cache.xuexb.com
+./bin/certbot-auto certonly --webroot -w /home/local/nginx-conf/acme-challenge -d xuexb.com -d www.xuexb.com -d github.xuexb.com -d ci.xuexb.com -d static.xuexb.com -d proxy.xuexb.com -d api.xuexb.com -d echo.xuexb.com -d reload.cdn.xuexb.com -d mip.xuexb.com -d admin.xuexb.com -d cache.xuexb.com -d amp.xuexb.com
 
 # 生成dhparam
 openssl dhparam -out ./ssl/dhparam.pem 2048
