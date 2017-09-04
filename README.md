@@ -1,5 +1,7 @@
 # nginx-conf
 
+> 注意, 本仓库只是我的 [前端小武博客](https://xuexb.com) 的站点配置, [github.com/xuexb/learn-nginx](https://github.com/xuexb/learn-nginx) 这里有更多配置说明~
+
 - 使用 [certbot](https://github.com/certbot/certbot) 生成 [letsencrypt](https://letsencrypt.org/) SSL证书
 - 使用 `crontab` + `bin/split-log` 定时切割nginx日志
 - 统一管理`/favicon.ico`(优先使用站点目录内文件, 如果不存在则使用统一的)
