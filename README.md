@@ -11,7 +11,7 @@
 
 ```
 # 根目录
-/home/local/nginx-conf/
+/home/xiaowu/local/nginx-conf/
 
 # 可执行文件
 ./bin/
@@ -52,7 +52,7 @@
 
 ```
 # 获取证书, 更新后把证书ln到./ssl中
-./bin/certbot-auto certonly --no-bootstrap  --webroot -w /home/local/nginx-conf/acme-challenge -d xuexb.com -d www.xuexb.com -d github.xuexb.com -d ci.xuexb.com -d static.xuexb.com -d proxy.xuexb.com -d api.xuexb.com -d echo.xuexb.com -d reload.cdn.xuexb.com -d mip.xuexb.com -d admin.xuexb.com -d cache.xuexb.com -d amp.xuexb.com -d log.xuexb.com -d status.xuexb.com
+./bin/certbot-auto certonly --no-bootstrap  --webroot -w /home/xiaowu/local/nginx-conf/acme-challenge -d xuexb.com -d www.xuexb.com -d github.xuexb.com -d ci.xuexb.com -d static.xuexb.com -d proxy.xuexb.com -d api.xuexb.com -d echo.xuexb.com -d mip.xuexb.com -d admin.xuexb.com -d cache.xuexb.com -d amp.xuexb.com -d log.xuexb.com -d status.xuexb.com -d xuexb.cn -d www.xuexb.cn
 
 # 生成dhparam
 openssl dhparam -out ./ssl/dhparam.pem 2048
@@ -63,12 +63,12 @@ mv isrgrootx1.pem root.pem
 cat root.pem chain.pem > root_ca_cert_plus_intermediates
 
 # 自动更新
-/home/local/nginx-conf/bin/certbot-auto renew && nginx -s reload
+/home/xiaowu/local/nginx-conf/bin/certbot-auto renew && nginx -s reload
 
 # pm2启动node服务
 pm2 start conf/pm2.json
 
 crontab -e
 # 插入一条定时任务, 定时23:50开始分割, 后面是把错误和信息输出到指定文件, 方便调试
-50 23 * * * sh /home/local/nginx-conf/bin/split-log >> /var/log/nginx/crontab.log 2>&1
+50 23 * * * sh /home/xiaowu/local/nginx-conf/bin/split-log >> /var/log/nginx/crontab.log 2>&1
 ```
