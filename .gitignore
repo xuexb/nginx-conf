@@ -36,7 +36,8 @@ jspm_packages
 # Optional REPL history
 .node_repl_history
 /ssl
-/acme-challenge
+/acme-challenge/*
+!/acme-challenge/.gitkeep
 
 /conf/*.default
 *.csr
