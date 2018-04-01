@@ -52,13 +52,13 @@ acme.sh --issue --dns dns_ali -d apijs.org -d *.apijs.org -d apijs.net -d *.apij
 acme.sh --install-cert -d xuexb.com \
     --key-file       /home/xiaowu/local/nginx-conf/ssl/xuexb.com.key  \
     --fullchain-file /home/xiaowu/local/nginx-conf/ssl/xuexb.com.fullchain.cer \
-    --reloadcmd     "/home/xiaowu/local/nginx-1.11.2/sbin/nginx -s reopen"
+    --reloadcmd     "/home/xiaowu/local/nginx-1.11.2/sbin/nginx -s stop && /home/xiaowu/local/nginx-1.11.2/sbin/nginx"
 
 # 安装博客证书到配置目录
 acme.sh --install-cert -d apijs.org \
     --key-file       /home/xiaowu/local/nginx-conf/ssl/apijs.org.key  \
     --fullchain-file /home/xiaowu/local/nginx-conf/ssl/apijs.org.fullchain.cer \
-    --reloadcmd     "/home/xiaowu/local/nginx-1.11.2/sbin/nginx -s reopen"
+    --reloadcmd     "/home/xiaowu/local/nginx-1.11.2/sbin/nginx -s stop && /home/xiaowu/local/nginx-1.11.2/sbin/nginx"
 
 # 添加定时任务
 # 先卸载当前用户的
