@@ -1,16 +1,16 @@
 # nginx-conf
 
-> 注意, 本仓库只是我的 [前端小武博客](https://xuexb.com) 的站点配置, [github.com/xuexb/learn-nginx](https://github.com/xuexb/learn-nginx) 这里有更多配置说明~
+> 注意，本仓库只是我的站点一些配置，[github.com/xuexb/learn-nginx](https://github.com/xuexb/learn-nginx) 这里有更多配置说明~
 
-- 使用 [certbot](https://github.com/certbot/certbot) 生成 [letsencrypt](https://letsencrypt.org/) SSL证书
+- 使用 [acme.sh](https://github.com/Neilpang/acme.sh) 生成 [letsencrypt](https://letsencrypt.org/) 泛真域名证书
 - 使用 `crontab` + `bin/split-log` 定时切割nginx日志
-- 统一管理`/favicon.ico`(优先使用站点目录内文件, 如果不存在则使用统一的)
-- 统一管理`/robots.txt`(优先使用站点目录内文件, 如果不存在则使用统一的)
+- 统一管理 `/favicon.ico` （优先使用站点目录内文件，如果不存在则使用统一的）
+- 统一管理`/robots.txt`（优先使用站点目录内文件，如果不存在则使用统一的）
 
 ## 目录结构
 
 ```
-# 根目录
+# 配置文件根目录
 /home/xiaowu/local/nginx-conf/
 
 # 可执行文件
@@ -19,56 +19,55 @@
 # nginx配置
 ./conf/
 
-# 扩展文件, 包括通用favicon.ico、通用robots.txt、ssl证书验证
+# 扩展文件，包括通用 favicon.ico 、通用 robots.txt 、SSL 能用配置
 ./conf/inc/
 
 # 站点配置
-./conf/vhost/
+./conf/主域名/
 
 # 公用静态文件
 ./html/
 
-# ssl证书 - 忽略提交
+# SSL 证书，acme 生成后需要复制到该文件夹
 ./ssl/
 
-# 验证文件 - 忽略提交
-./acme-challenge/
-
 # 日志源文件
-/var/log/nginx/xuexb.com/last/{access,error}.{子域名}.log
+/var/log/nginx/xuexb.com/last/{access，rror}.{子域名}.log
 
 # 日志切割文件文件
-/var/log/nginx/xuexb.com/back/{Y-m-d}/{access,error}.{子域名}.log
+/var/log/nginx/xuexb.com/back/{Y-m-d}/{access，rror}.{子域名}.log
 ```
-
-## 端口
-
-端口 | 服务
---- | ---
-8360 | 博客node
-8888 | demo-node
 
 ## 命令
 
-```
-# 获取证书, 更新后把证书ln到./ssl中
-sudo ./bin/certbot-auto certonly --no-bootstrap  --webroot -w /home/xiaowu/local/nginx-conf/acme-challenge -d xuexb.com -d www.xuexb.com -d github.xuexb.com -d ci.xuexb.com -d static.xuexb.com -d proxy.xuexb.com -d api.xuexb.com -d echo.xuexb.com -d mip.xuexb.com -d admin.xuexb.com -d cache.xuexb.com -d amp.xuexb.com -d log.xuexb.com -d status.xuexb.com -d xuexb.cn -d www.xuexb.cn
+```bash
+# 生成证书
+# 博客相关
+acme.sh --issue --dns dns_ali -d xuexb.com -d *.xuexb.com -d *.cdn.xuexb.com -d *.api.xuexb.com -d *.static.xuexb.com -d xuexb.cn -d www.xuexb.cn --log
 
-# 生成dhparam
-openssl dhparam -out ./ssl/dhparam.pem 2048
+# apijs 相关
+acme.sh --issue --dns dns_ali -d apijs.org -d *.apijs.org -d apijs.net -d *.apijs.net --log
 
-# 生成root_ca_cert_plus_intermediates
-wget https://letsencrypt.org/certs/isrgrootx1.pem
-mv isrgrootx1.pem root.pem
-cat root.pem chain.pem > root_ca_cert_plus_intermediates
+# 安装博客证书到配置目录
+acme.sh --install-cert -d xuexb.com \
+    --key-file       /home/xiaowu/local/nginx-conf/ssl/xuexb.com.key  \
+    --fullchain-file /home/xiaowu/local/nginx-conf/ssl/xuexb.com.fullchain.cer \
+    --reloadcmd     "/home/xiaowu/local/nginx-1.11.2/sbin/nginx -s reopen"
 
-# 自动更新
-/home/xiaowu/local/nginx-conf/bin/certbot-auto renew && nginx -s reload
+# 安装博客证书到配置目录
+acme.sh --install-cert -d apijs.org \
+    --key-file       /home/xiaowu/local/nginx-conf/ssl/apijs.org.key  \
+    --fullchain-file /home/xiaowu/local/nginx-conf/ssl/apijs.org.fullchain.cer \
+    --reloadcmd     "/home/xiaowu/local/nginx-1.11.2/sbin/nginx -s reopen"
 
-# pm2启动node服务
-pm2 start conf/pm2.json
+# 添加定时任务
+# 先卸载当前用户的
+acme.sh --uninstall-cronjob
+# su root ，切换到 root 下，因为刷新 Nginx 的命令需要 root
+acme.sh --install-cronjob
 
+# 切换到 root 用户下添加定时任务
 crontab -e
-# 插入一条定时任务, 定时23:50开始分割, 后面是把错误和信息输出到指定文件, 方便调试
+# 插入一条定时任务，定时23:50开始分割，后面是把错误和信息输出到指定文件，方便调试
 50 23 * * * sh /home/xiaowu/local/nginx-conf/bin/split-log >> /var/log/nginx/crontab.log 2>&1
 ```
