@@ -1,0 +1,4 @@
+# xiaowu
+
+User-agent: *
+Disallow: /
