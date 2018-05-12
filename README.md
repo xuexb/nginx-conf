@@ -48,16 +48,45 @@ acme.sh --issue --dns dns_ali -d xuexb.com -d *.xuexb.com -d *.cdn.xuexb.com -d 
 # apijs 相关
 acme.sh --issue --dns dns_ali -d apijs.org -d *.apijs.org -d apijs.net -d *.apijs.net --log
 
+# alafe 相关
+acme.sh --issue --dns dns_ali -d alafe.org -d *.alafe.org
+
+# jiandansousuo 相关
+acme.sh --issue --dns dns_ali \
+    -d jiandansousuo.com \
+    -d *.jiandansousuo.com \
+    -d *.api.jiandansousuo.com \
+    -d *.proxy.jiandansousuo.com \
+    -d *.static.jiandansousuo.com \
+    -d *.cdn.jiandansousuo.com \
+    -d jiandansousuo.cn \
+    -d *.jiandansousuo.cn \
+    -d jiandansousuo.org \
+    -d *.jiandansousuo.org \
+    --log
+
 # 安装博客证书到配置目录
 acme.sh --install-cert -d xuexb.com \
     --key-file       /home/xiaowu/local/nginx-conf/ssl/xuexb.com.key  \
     --fullchain-file /home/xiaowu/local/nginx-conf/ssl/xuexb.com.fullchain.cer \
     --reloadcmd     "/home/xiaowu/local/nginx-1.11.2/sbin/nginx -s stop && /home/xiaowu/local/nginx-1.11.2/sbin/nginx"
 
-# 安装博客证书到配置目录
+# 安装 apijs 证书到配置目录
 acme.sh --install-cert -d apijs.org \
     --key-file       /home/xiaowu/local/nginx-conf/ssl/apijs.org.key  \
     --fullchain-file /home/xiaowu/local/nginx-conf/ssl/apijs.org.fullchain.cer \
+    --reloadcmd     "/home/xiaowu/local/nginx-1.11.2/sbin/nginx -s stop && /home/xiaowu/local/nginx-1.11.2/sbin/nginx"
+
+# 安装 alafe 证书到配置目录
+acme.sh --install-cert -d alafe.org \
+    --key-file       /home/xiaowu/local/nginx-conf/ssl/alafe.org.key  \
+    --fullchain-file /home/xiaowu/local/nginx-conf/ssl/alafe.org.fullchain.cer \
+    --reloadcmd     "/home/xiaowu/local/nginx-1.11.2/sbin/nginx -s stop && /home/xiaowu/local/nginx-1.11.2/sbin/nginx"
+
+# 安装 jiandansousuo 证书到配置目录
+acme.sh --install-cert -d jiandansousuo.com \
+    --key-file       /home/xiaowu/local/nginx-conf/ssl/jiandansousuo.com.key  \
+    --fullchain-file /home/xiaowu/local/nginx-conf/ssl/jiandansousuo.com.fullchain.cer \
     --reloadcmd     "/home/xiaowu/local/nginx-1.11.2/sbin/nginx -s stop && /home/xiaowu/local/nginx-1.11.2/sbin/nginx"
 
 # 添加定时任务
