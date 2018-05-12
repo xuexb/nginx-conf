@@ -49,10 +49,11 @@ acme.sh --issue --dns dns_ali -d xuexb.com -d *.xuexb.com -d *.cdn.xuexb.com -d 
 acme.sh --issue --dns dns_ali -d apijs.org -d *.apijs.org -d apijs.net -d *.apijs.net --log
 
 # alafe 相关
-acme.sh --issue --dns dns_ali -d alafe.org -d *.alafe.org
+acme.sh --issue --dns dns_ali -d alafe.org -d *.alafe.org --log
 
 # jiandansousuo 相关
-acme.sh --issue --dns dns_ali \
+acme.sh --issue \
+    --dns dns_ali \
     -d jiandansousuo.com \
     -d *.jiandansousuo.com \
     -d *.api.jiandansousuo.com \
