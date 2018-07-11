@@ -43,7 +43,7 @@
 ```bash
 # 生成证书
 # 博客相关
-acme.sh --issue --dns dns_ali -d xuexb.com -d *.xuexb.com -d *.cdn.xuexb.com -d *.api.xuexb.com -d *.static.xuexb.com -d xuexb.cn -d www.xuexb.cn --log
+acme.sh --issue --dns dns_ali -d xuexb.com -d *.xuexb.com -d *.registry.xuexb.com -d *.cdn.xuexb.com -d *.api.xuexb.com -d *.static.xuexb.com -d xuexb.cn -d www.xuexb.cn --log
 
 # apijs 相关
 acme.sh --issue --dns dns_ali -d apijs.org -d *.apijs.org -d apijs.net -d *.apijs.net --log
